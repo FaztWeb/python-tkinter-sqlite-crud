@@ -84,6 +84,7 @@ class Product:
             self.price.delete(0, END)
         else:
             self.message['text'] = 'Name and Price is Required'
+            messagebox.showerror("warning",'Name and Price is Required')
         self.get_products()
 
     def delete_product(self):
