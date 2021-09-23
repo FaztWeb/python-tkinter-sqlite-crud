@@ -99,6 +99,7 @@ class Product:
         query = 'DELETE FROM product WHERE name = ?'
         self.run_query(query, (name, ))
         self.message['text'] = 'Record {} deleted Successfully'.format(name)
+        messagebox.showinfo("DELETED",'Record {} deleted Successfully'.format(name))
         self.get_products()
 
     def edit_product(self):
