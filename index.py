@@ -78,12 +78,12 @@ class Product:
             query = 'INSERT INTO product VALUES(NULL, ?, ?)'
             parameters =  (self.name.get(), self.price.get())
             self.run_query(query, parameters)
-            self.message['text'] = 'Product {} added Successfully'.format(self.name.get())
+            # self.message['text'] = 'Product {} added Successfully'.format(self.name.get())
             m=messagebox.showinfo("PRODUCT ADDED",'Product {} added Successfully'.format(self.name.get()))
             self.name.delete(0, END)
             self.price.delete(0, END)
         else:
-            self.message['text'] = 'Name and Price is Required'
+            # self.message['text'] = 'Name and Price is Required'
             messagebox.showerror("warning",'Name and Price is Required')
         self.get_products()
 
@@ -92,13 +92,14 @@ class Product:
         try:
            self.tree.item(self.tree.selection())['text'][0]
         except IndexError as e:
-            self.message['text'] = 'Please select a Record'
+            # self.message['text'] = 'Please select a Record'
+            messagebox.showerror("error",'Please select a Record')
             return
         self.message['text'] = ''
         name = self.tree.item(self.tree.selection())['text']
         query = 'DELETE FROM product WHERE name = ?'
         self.run_query(query, (name, ))
-        self.message['text'] = 'Record {} deleted Successfully'.format(name)
+        # self.message['text'] = 'Record {} deleted Successfully'.format(name)
         messagebox.showinfo("DELETED",'Record {} deleted Successfully'.format(name))
         self.get_products()
 
@@ -107,7 +108,8 @@ class Product:
         try:
             self.tree.item(self.tree.selection())['values'][0]
         except IndexError as e:
-            self.message['text'] = 'Please, select Record'
+            # self.message['text'] = 'Please, select Record'
+            messagebox.showerror("error",'Please select a Record')
             return
         name = self.tree.item(self.tree.selection())['text']
         old_price = self.tree.item(self.tree.selection())['values'][0]
@@ -137,7 +139,8 @@ class Product:
         parameters = (new_name, new_price,name, old_price)
         self.run_query(query, parameters)
         self.edit_wind.destroy()
-        self.message['text'] = 'Record {} updated successfylly'.format(name)
+        # self.message['text'] = 'Record {} updated successfylly'.format(name)
+        messagebox.showinfo("ADDED",'Record {} updated successfylly'.format(name))
         self.get_products()
 
 if __name__ == '__main__':
