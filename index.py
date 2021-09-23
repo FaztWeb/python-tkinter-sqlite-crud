@@ -1,5 +1,6 @@
 from tkinter import ttk
 from tkinter import *
+from tkinter import messagebox
 
 import sqlite3
 
@@ -78,6 +79,7 @@ class Product:
             parameters =  (self.name.get(), self.price.get())
             self.run_query(query, parameters)
             self.message['text'] = 'Product {} added Successfully'.format(self.name.get())
+            m=messagebox.showinfo("PRODUCT ADDED",'Product {} added Successfully'.format(self.name.get()))
             self.name.delete(0, END)
             self.price.delete(0, END)
         else:
